@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App & Location</title>
+</head>
+<body>
+    <header>
+        <h1>Weather App</h1>
+    </header>
+    <div class="content">
+    <div class="container"> 
+        <!-- <input type="text" id="input" placeholder="Enter Your City Name!"> -->
+        <input type="text" id="lon" placeholder="lon">
+        <input type="text" id="lat" placeholder="lan">
+        <!-- <hr>or <br><hr> -->
+        <button id="but">Get Device Location</button>
+        <button class="datathrough_lat">get data</button>
+    </div>
+    <div class="container1">
+<!-- <h1>Weather App</h1><hr> -->
+    </div>
+    
+</div>
+</body>
+<script>
+    let btn=document.getElementById("but")
+    let inputclass=document.querySelector(".input")
+    let containerclass=document.querySelector(".container1")
+    let lat = document.getElementById("lat")
+    let lon = document.getElementById("lon")
+    let btn1 = document.querySelector(".datathrough_lat")
+
+
+    btn1.addEventListener("click",()=>{
+fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat.value}&lon=${lon.value}&appid=dd0fb4175cda4c33145bf488f878632d`)
+   .then(res=>res.json())
+   .then((data)=>{
+    let result = `<div>
+    <h1>icon= ${data["weather"].icon}
+        <h1>sunrise=${data["sys"].sunrise}</h1>
+        <h1>sunset=${data["sys"].sunset}</h1>
+        <h1>city:${data.name}</h1>
+        <h1>temp=${data["main"].temp-273}°C 
+            <span>Broken Cloud</span></h1>
+        </div>`
+        containerclass.innerHTML=result
+        console.log(result);
+   }).catch(console.error("invalid city name")
+   )
+    
+
+    })
+    
+</script>
+</html>
+
+
+<!-- <div></div>
+<h1></h1> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

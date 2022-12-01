@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./weather.css">
+</head>
+<body>
+    <div class="weather_container">
+    <input type="text" placeholder="Enter City Name!" id="input1">
+    <button id="btn">Get Data</button>
+    <div class="datacontainer"></div>
+  </div>
+</body>
+
+<script>
+    let input2=document.getElementById("input1")
+    let btn = document.getElementById("btn")
+    let container=document.querySelector(".datacontainer")
+
+    btn.addEventListener("click",()=>{
+        // console.log("hai");
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input2.value}&appid=6b68e8e028dd61523de8c13bdad58764`)
+   .then(res=>res.json())
+   .then((data)=>{
+    container.innerHTML=null
+    // console.log(data);
+    let result=`<div>
+        <h1>City:${input2.value}</h1>
+        <h1>wind=${data["wind"].speed}km/h</h1>
+        <h1>temp=${Math.floor(data["main"].temp-273)}°C|°F</h1>
+            <img src="./img/rainy.jpg" alt="">
+        <h1>pressure=${data["main"].pressure}</h1>
+        <h1>humidty=${data["main"].humidity}%</h1>
+        </div>`
+        
+        container.innerHTML=result
+        console.log(result,"hi")
+   }).catch(error=>alert("invalid City name")) 
+   }) 
+</script>
+</html>
+
+
+
+
+
+
+
+
+
