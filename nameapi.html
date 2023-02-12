@@ -21,12 +21,12 @@
     let container=document.querySelector(".datacontainer")
 
     btn.addEventListener("click",()=>{
-        // console.log("hai");
+       
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input2.value}&appid=6b68e8e028dd61523de8c13bdad58764`)
    .then(res=>res.json())
    .then((data)=>{
     container.innerHTML=null
-    // console.log(data);
+    
     let result=`<div>
         <h1>City:${input2.value}</h1>
         <h1>wind=${data["wind"].speed}km/h</h1>
@@ -37,7 +37,7 @@
         </div>`
         
         container.innerHTML=result
-        console.log(result,"hi")
+        
    }).catch(error=>alert("invalid City name")) 
    }) 
 </script>
